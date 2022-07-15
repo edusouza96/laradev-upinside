@@ -1,0 +1,47 @@
+<?php
+
+namespace LaraDev\Http\Controllers\Web;
+
+use Illuminate\Http\Request;
+use LaraDev\Http\Controllers\Controller;
+use LaraDev\Property;
+
+class WebController extends Controller
+{
+    public function home()
+    {
+        $propertyForSale = Property::sale()->available()->limit(3)->get();
+        $propertyForRent = Property::rent()->available()->limit(3)->get();
+        return view('web.home', [
+            'propertyForSale' => $propertyForSale,
+            'propertyForRent' => $propertyForRent,
+        ]);
+    }
+    
+    public function contact()
+    {
+        return view('web.contact');
+    }
+    public function rent()
+    {
+        return view('web.rent');
+    }
+    public function rentProperty(Request $request)
+    {
+        $property = Property::where('slug', $request->slug)->first();
+        return view('web.property', ['property' => $property]);
+    }
+    public function buy()
+    {
+        return view('web.buy');
+    }
+    public function buyProperty(Request $request)
+    {
+        $property = Property::where('slug', $request->slug)->first();
+        return view('web.property', ['property', $property]);
+    }
+    public function filter()
+    {
+        return view('web.filter');
+    }
+}
