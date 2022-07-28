@@ -20,7 +20,7 @@ class AlterUsersTable extends Migration
 
             /** Data */
             $table->string('genre')->nullable();
-            $table->string('document')->unique();
+            $table->string('document')->unique()->nullable();
             $table->string('document_secondary', 20)->nullable();
             $table->string('document_secondary_complement')->nullable();
             $table->date('date_of_birth')->nullable();
@@ -49,7 +49,7 @@ class AlterUsersTable extends Migration
             $table->string('type_of_communion')->nullable();
             $table->string('spouse_name')->nullable();
             $table->string('spouse_genre')->nullable();
-            $table->string('spouse_document')->unique();
+            $table->string('spouse_document')->unique()->nullable();
             $table->string('spouse_document_secondary', 20)->nullable();
             $table->string('spouse_document_secondary_complement')->nullable();
             $table->date('spouse_date_of_birth')->nullable();

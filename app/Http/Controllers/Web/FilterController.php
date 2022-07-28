@@ -15,7 +15,7 @@ class FilterController extends Controller
             session()->remove('rent');
             $properties = $this->createQuery('category');
         }
-        
+
         if($request->search === 'rent'){
             session()->put('rent', true);
             session()->remove('sale');
@@ -31,7 +31,7 @@ class FilterController extends Controller
             return response()->json($this->setResponse('success', $collect->unique()->toArray()));
         }
 
-        return response()->json($this->setResponse('error', [], 'Ops, não foi retornado nenhum dado  para essa pesquisa!'));
+        return response()->json($this->setResponse('fail', [], 'Ops, não foi retornado nenhum dado  para essa pesquisa!'));
     }
 
     private function setResponse(string $status, array $data = null, string $message = null)
