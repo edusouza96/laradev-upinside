@@ -9,109 +9,77 @@
                 </div>
 
                 <div class="col-12 col-md-4">
-                    <form action="" class="w-100 p-3 bg-white mb-5">
+                    <form action="{{ route('web.filter') }}" method="POST" class="w-100 p-3 bg-white mb-5">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="search" class="mb-2 text-front">Comprar ou Alugar?</label>
-                                <select class="selectpicker" id="search" name="search" title="Escolha...">
-                                    <option value="buy">Comprar</option>
-                                    <option value="rent">Alugar</option>
+                                <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
+                                <select class="selectpicker" id="search" name="filter_search" title="Escolha..." data-index="1" data-action="{{ route('component.main-filter.search') }}">
+                                    <option value="buy" {{ (session('sale') == true ? 'selected' : '') }}>Comprar</option>
+                                    <option value="rent" {{ (session('rent') == true ? 'selected' : '') }}>Alugar</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="category" class="mb-2 text-front">O que você quer?</label>
-                                <select class="selectpicker" id="category" name="category" title="Escolha...">
-                                    <option value="">Imóvel Residencial</option>
-                                    <option value="">Comercial/Industrial</option>
-                                    <option value="">Terreno</option>
+                                <label for="category" class="mb-2"><b>O que você quer?</b></label>
+                                <select class="selectpicker" id="category" name="filter_category" title="Escolha..." data-index="2" data-action="{{ route('component.main-filter.category') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="type" class="mb-2 text-front">Qual o tipo do imóvel?</label>
-                                <select class="selectpicker input-large" id="type" name="type" multiple
-                                        data-actions-box="true">
-                                    <option value="">Casa</option>
-                                    <option value="">Apartamento</option>
-                                    <option value="">Terreno</option>
-                                    <option value="">Sala Comercial</option>
-                                    <option value="">Galpão</option>
+                                <label for="type" class="mb-2 d-block"><b>Qual o tipo do imóvel?</b></label>
+                                <select class="selectpicker input-large" id="type" name="filter_type" title="Escolha..." multiple data-actions-box="true" data-index="3" data-action="{{ route('component.main-filter.type') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="search_locale" class="mb-2 text-front">Onde você quer?</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha..." multiple
-                                        data-actions-box="true">
-                                    <option value="">Campeche</option>
-                                    <option value="">Rio Tavares</option>
-                                    <option value="">Morro das Pedras</option>
-                                    <option value="">Pântano do Sul</option>
-                                    <option value="">Matadeiro</option>
-                                    <option value="">Armação</option>
+                                <label for="search_locale" class="mb-2"><b>Onde você quer?</b></label>
+                                <select class="selectpicker" name="filter_neighborhood" id="neighborhood" title="Escolha..." multiple data-actions-box="true" data-index="4" data-action="{{ route('component.main-filter.neighborhood') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Quartos</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Quartos</b></label>
+                                <select class="selectpicker" name="filter_bedrooms" id="bedrooms" title="Escolha..." data-index="5"  data-action="{{ route('component.main-filter.bedrooms') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Suítes</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">0</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Suítes</b></label>
+                                <select class="selectpicker" name="filter_suites" id="suites" title="Escolha..." data-index="6" data-action="{{ route('component.main-filter.suites') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Banheiros</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Banheiros</b></label>
+                                <select class="selectpicker" name="filter_bathrooms" id="bathrooms" title="Escolha..." data-index="7" data-action="{{ route('component.main-filter.bathrooms') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Garagem</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">0</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Garagem</b></label>
+                                <select class="selectpicker" name="filter_garage" id="garage" title="Escolha..." data-index="8" data-action="{{ route('component.main-filter.garage') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Preço Base</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">A partir de R$ 100.000,00</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Preço Base</b></label>
+                                <select class="selectpicker" name="filter_base" id="base" title="Escolha..." data-index="9" data-action="{{ route('component.main-filter.priceBase') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12">
-                                <label for="bedrooms" class="mb-2 text-front">Preço Limite</label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
-                                    <option value="">Até R$ 1.000.000,00</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                <label for="bedrooms" class="mb-2"><b>Preço Limite</b></label>
+                                <select class="selectpicker" name="filter_limit" id="limit" title="Escolha..." data-index="10" data-action="{{ route('component.main-filter.priceLimit') }}">
+                                    <option disable>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
