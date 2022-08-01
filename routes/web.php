@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function(){
     Route::get('/quero-comprar/{slug}/', 'WebController@buyProperty')->name('buyProperty');
 
     /** Pagina de Filtro */
-    Route::get('/filtro', 'WebController@filter')->name('filter');
+    Route::match(['post', 'get'], '/filtro', 'WebController@filter')->name('filter');
 });
 
 Route::group(['prefix' => 'component', 'namespace' => 'Web', 'as' => 'component.'], function(){

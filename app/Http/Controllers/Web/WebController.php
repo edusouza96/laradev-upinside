@@ -17,7 +17,7 @@ class WebController extends Controller
             'propertyForRent' => $propertyForRent,
         ]);
     }
-    
+
     public function contact()
     {
         return view('web.contact');
@@ -42,6 +42,20 @@ class WebController extends Controller
     }
     public function filter()
     {
-        return view('web.filter');
+        $filter = new FilterController();
+        $itemProperties = $filter->createQuery('id');
+
+        foreach ($itemProperties as $property) {
+            $properties[] = $property->id;
+        }
+
+        if(!empty($properties)){
+            $properties = Property::whereIn('id', $properties)->get();
+        }else{
+            $properties = Property::all();
+        }
+        return view('web.filter', [
+            'properties' => $properties
+        ]);
     }
 }

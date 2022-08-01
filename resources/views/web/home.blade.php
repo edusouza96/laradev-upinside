@@ -17,7 +17,8 @@
     <div class="main_filter">
         <div class="container my-5">
             <div class="row">
-                <form action="" class="form-inline w-100">
+                <form action="{{ route('web.filter') }}" method="post" class="form-inline w-100">
+                    @csrf
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
                         <select class="selectpicker" id="search" name="filter_search" title="Escolha..." data-index="1" data-action="{{ route('component.main-filter.search') }}">
