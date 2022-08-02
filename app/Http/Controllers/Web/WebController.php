@@ -76,4 +76,42 @@ class WebController extends Controller
             'properties' => $properties
         ]);
     }
+
+    public function experience()
+    {
+        $filter = new FilterController();
+        $filter->clearAllData();
+
+        $properties = Property::whereNotNull('experience')->get();
+
+        return view('web.filter', [
+            'properties' => $properties
+        ]);
+    }
+
+    public function experienceCategory(Request $request)
+    {
+        $filter = new FilterController();
+        $filter->clearAllData();
+
+        if($request->category == 'cobertura'){
+            $properties = Property::where('experience', 'Cobertura')->get();
+        }else if($request->category == 'alto-padrao'){
+            $properties = Property::where('experience', 'Alto Padrão')->get();
+        }else if($request->category == 'de-frente-para-o-mar'){
+            $properties = Property::where('experience', 'De Frente para o Mar')->get();
+        }else if($request->category == 'condominio-fechado'){
+            $properties = Property::where('experience', 'Condomínio Fechado')->get();
+        }else if($request->category == 'compacto'){
+            $properties = Property::where('experience', 'Compacto')->get();
+        }else if($request->category == 'lojas-e-salas'){
+            $properties = Property::where('experience', 'Lojas e Salas')->get();
+        }else{
+            $properties = Property::whereNotNull('experience')->get();
+        }
+
+        return view('web.filter', [
+            'properties' => $properties
+        ]);
+    }
 }

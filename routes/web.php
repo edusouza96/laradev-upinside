@@ -15,6 +15,12 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function(){
     /** Pagina Inicial */
     Route::get('/', 'WebController@home')->name('home');
 
+    /** Pagina de Experiencias */
+    Route::get('/experiencias', 'WebController@experience')->name('experience');
+
+    /** Pagina de Experiencias - Especifica de uma categoria */
+    Route::get('/experiencias/{category}', 'WebController@experienceCategory')->name('experienceCategory');
+
     /** Pagina de Contato */
     Route::get('/contato', 'WebController@contact')->name('contact');
 

@@ -116,7 +116,7 @@
 
             <div class="main_list_group_item row mt-5 d-flex justify-content-around">
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'cobertura']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/cobertura_oto_1.jpg') no-repeat; background-size: cover;">
                             <h2>Cobertura</h2>
@@ -125,7 +125,7 @@
                 </article>
 
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'alto-padrao']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/alto_padrao_1.jpg') no-repeat; background-size: cover;">
                             <h2>Alto Padrão</h2>
@@ -134,7 +134,7 @@
                 </article>
 
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'de-frente-para-o-mar']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/de_frente_pro_mar_original.jpg') no-repeat; background-size: cover;">
                             <h2>De frente para o Mar</h2>
@@ -143,7 +143,7 @@
                 </article>
 
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'condominio-fechado']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/condominio_fechado_1.jpg') no-repeat; background-size: cover;">
                             <h2>Condomínio Fechado</h2>
@@ -152,7 +152,7 @@
                 </article>
 
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'compacto']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/compacto_1.jpg') no-repeat; background-size: cover;">
                             <h2>Compacto</h2>
@@ -161,7 +161,7 @@
                 </article>
 
                 <article class="main_list_group_items_item col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="#">
+                    <a href="{{ route('web.experienceCategory', ['category' => 'lojas-e-salas']) }}">
                         <div class="d-flex align-items-center justify-content-center"
                             style="background: url('frontend/assets/images/home/sala_comercial_original.jpg') no-repeat; background-size: cover;">
                             <h2>Lojas e Salas</h2>
