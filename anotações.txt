@@ -1,0 +1,19 @@
+COLOCANDO UM PROJETO LARAVEL NUMA HOSPEDAGEM
+
+- Subir o projeto para o servidor (dentro de home, depende do servidor, mas é no mesmo nivel que a pasta public_html)
+- Renomear a public_html (mv public_html public_html_bkp)
+- Criar um atalho do projeto (ln -s meu_projeto/public public_html)
+- Acessar o projeto (cd meu_projeto)
+- Dar as permissões pras pastas do projeto (find * -type d -exec chmod 755 {} \; )
+- Dar as permissões pros arquivos do projeto (find * -type f -exec chmod 644 {} \; )
+- Instalar o composer
+    - wget http://getcomposer.org/installer (baixa)
+    - php installer                         (instala)
+    - rm -rf installer                      (remove o instalador)
+- Baixar as dependencias do projeto (composer install)
+- Criar .env(nano .env)
+    - Ctrl + o = Salvar
+    - Ctrl + x = sair do editor
+- Caso queira ver o conteudo .env(tail .env)
+- Rodar as migrações (php artisan migrate)
+
