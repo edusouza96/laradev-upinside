@@ -19,8 +19,12 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function(){
     Route::post('/auth/login', 'AuthController@login')->name('login');
-    Route::post('/auth/logout', 'AuthController@logout')->name('logout');
-    Route::post('/me', 'AuthController@me')->name('me');
 
-    Route::apiResource('/company', 'CompanyController');
+    Route::group(['middleware' => ['apiJwt']], function(){
+
+        Route::post('/auth/logout', 'AuthController@logout')->name('logout');
+        Route::post('/me', 'AuthController@me')->name('me');
+
+        Route::apiResource('/company', 'CompanyController');
+    });
 });
