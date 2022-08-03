@@ -131,17 +131,17 @@
                                         </div>
                                         <div class="card-footer d-flex">
                                             <div class="main_properties_features col-4 text-center">
-                                                <img src="frontend/assets/images/icons/bed.png" class="img-fluid" alt="">
+                                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
                                                 <p class="text-muted">{{ $property->bathrooms }}</p>
                                             </div>
 
                                             <div class="main_properties_features col-4 text-center">
-                                                <img src="frontend/assets/images/icons/garage.png" class="img-fluid" alt="">
+                                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
                                                 <p class="text-muted">{{ $property->garage + $property->garage_covered }}</p>
                                             </div>
 
                                             <div class="main_properties_features col-4 text-center">
-                                                <img src="frontend/assets/images/icons/util-area.png" class="img-fluid" alt="">
+                                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
                                                 <p class="text-muted">{{ $property->area_util }} m&sup2;</p>
                                             </div>
                                         </div>

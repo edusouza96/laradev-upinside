@@ -7,8 +7,8 @@
                 <div class="col-lg-8">
                     <p class="main_slide_content text-white">Encontre o <b>Imóvel ideal</b> para você e <b>sua família</b>
                         morar na praia!</p>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
+                    <a href="{{ route('web.rent') }}" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
+                    <a href="{{ route('web.buy') }}" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
         <div class="container">
             <header class="d-flex justify-content-between align-items-center border-bottom border-front mb-5">
                 <h1 class="text-front">À Venda</h1>
-                <a href="javascript:void(0)" class="text-front">Ver mais</a>
+                <a href="{{ route('web.buy') }}" class="text-front">Ver mais</a>
             </header>
 
             <div class="row">
@@ -225,7 +225,7 @@
         <div class="container">
             <header class="d-flex justify-content-between align-items-center border-bottom border-front mb-5">
                 <h1 class="text-front">Para Alugar</h1>
-                <a href="javascript:void(0)" class="text-front">Ver mais</a>
+                <a href="{{ route('web.rent') }}" class="text-front">Ver mais</a>
             </header>
 
             <div class="row">

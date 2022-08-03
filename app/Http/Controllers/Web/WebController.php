@@ -2,9 +2,11 @@
 
 namespace LaraDev\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
-use LaraDev\Http\Controllers\Controller;
 use LaraDev\Property;
+use Illuminate\Http\Request;
+use LaraDev\Mail\Web\Contact;
+use Illuminate\Support\Facades\Mail;
+use LaraDev\Http\Controllers\Controller;
 
 class WebController extends Controller
 {
@@ -26,6 +28,20 @@ class WebController extends Controller
         ]);
     }
 
+    public function spotlight()
+    {
+        $head = $this->seo->render(
+            env('APP_NAME'),
+            'Confira nossos maiores empreendimentos e lançamentos no sul da ilha de Florianópolis',
+            route('web.spotlight'),
+            asset('frontend/assets/images/logo.png')
+        );
+
+        return view('web.spotlight', [
+            'head' => $head,
+        ]);
+    }
+
     public function contact()
     {
         $head = $this->seo->render(
@@ -37,6 +53,27 @@ class WebController extends Controller
         return view('web.contact', [
             'head' => $head
         ]);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $data = [
+            'reply_name' => $request->name,
+            'reply_email' => $request->email,
+            'cell' => $request->cell,
+            'message' => $request->message,
+        ];
+
+        /** Para testar em tela*/
+        // return new Contact($data);
+        Mail::send(new Contact($data));
+
+        return redirect()->route('web.sendEmailSucess');
+    }
+
+    public function sendEmailSucess()
+    {
+        return view('web.contact_success');
     }
     public function rent()
     {

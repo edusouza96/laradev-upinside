@@ -70,4 +70,6 @@ $(function () {
             }
         }, 'json');
     });
+
+    // delete $.ajaxSetup.headers['X_CSRF_TOKEN'];
 });

@@ -200,28 +200,29 @@
                         <div class="main_property_contact">
                             <h2 class="bg-front text-white">Entre em contato</h2>
 
-                            <form action="">
+                            <form action="{{ route('web.sendEmail') }}" method="POST" autocomplete="off">
+                                @csrf
                                 <div class="form-group">
                                     <label for="name">Seu nome:</label>
-                                    <input type="text" id="name" class="form-control"
+                                    <input type="text" class="form-control" name="name"
                                         placeholder="Informe seu nome completo">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="telephone">Seu telefone:</label>
-                                    <input type="tel" id="telephone" class="form-control"
+                                    <input type="tel" name="cell" class="form-control"
                                         placeholder="Informe seu telefone com DDD">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Seu e-mail:</label>
-                                    <input type="email" id="email" class="form-control"
+                                    <input type="email" name="email" class="form-control"
                                         placeholder="Informe seu melhor e-mail">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="message">Sua Mensagem:</label>
-                                    <textarea name="message" id="message" cols="30" rows="5" class="form-control">Quero ter mais informações sobre esse imóvel. Imóvel Residencial, Casa, Campeche, Florianópolis! (#01)</textarea>
+                                    <textarea name="message" name="message" cols="30" rows="5" class="form-control">Quero ter mais informações sobre esse imóvel. Imóvel Residencial, Casa, Campeche, Florianópolis! (#01)</textarea>
                                 </div>
 
                                 <div class="form-group">
