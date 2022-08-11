@@ -62,12 +62,12 @@ class Property extends Model
     {
         return $this->belongsTo(User::class, 'user', 'id');
     }
-    
+
     public function images()
     {
         return $this->hasMany(PropertyImage::class, 'property', 'id')->orderBy('cover', 'asc');
     }
-    
+
     public function cover()
     {
         $images = $this->images();
@@ -78,18 +78,18 @@ class Property extends Model
             $cover = $images->first(['path']);
         }
 
-        if(empty($cover['path']) || !File::exists('../public/storage/'. $cover['path'])){
+        if(empty($cover['path']) || !File::exists(storage_path() . '/app/public/'. $cover['path'])){
             return url(asset('backend/assets/images/realty.jpeg'));
         }
 
         return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
     }
-    
+
     public function setSaleAttribute($value)
     {
         $this->attributes['sale'] = ($value == true || $value == 'on' ? 1 : 0);
     }
-    
+
     public function setRentAttribute($value)
     {
         $this->attributes['rent'] = ($value == true || $value == 'on' ? 1 : 0);
@@ -249,7 +249,7 @@ class Property extends Model
     {
         return $query->where('sale', 1);
     }
-    
+
     public function scopeRent($query)
     {
         return $query->where('rent', 1);
@@ -259,7 +259,7 @@ class Property extends Model
     {
         return $query->where('status', 1);
     }
-    
+
     public function scopeUnavailable($query)
     {
         return $query->where('status', 0);
@@ -272,5 +272,5 @@ class Property extends Model
             $this->save();
         }
     }
-   
+
 }

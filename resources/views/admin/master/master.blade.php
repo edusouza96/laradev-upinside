@@ -30,7 +30,7 @@
 
 <div class="ajax_response"></div>
 @php
-    if(\Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . \Illuminate\Support\Facades\Auth::user()->cover)){
+    if(\Illuminate\Support\Facades\File::exists(storage_path() . '/app/public/' . \Illuminate\Support\Facades\Auth::user()->cover)){
         $cover = \Illuminate\Support\Facades\Auth::user()->url_cover;
     }else{
         $cover = url(asset('backend/assets/images/avatar.jpg'));
@@ -71,7 +71,7 @@
                     <li class="{{ isActive('admin.contracts.create') }}"><a href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
+            <li class="dash_sidebar_nav_item"><a class="icon-reply" href="{{ route('web.home') }}">Ver Site</a></li>
             <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}" target="_blank">Sair</a></li>
         </ul>
 
