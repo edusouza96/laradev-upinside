@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     protected $fillable = [
-        'sale',
-        'rent',
+        'purpose',
         'owner',
         'owner_spouse',
         'owner_company',
@@ -52,19 +51,12 @@ class Contract extends Model
         return $this->hasOne(Company::class, 'id', 'acquirer_company');
     }
 
-    public function setSaleAttribute($value)
+    public function setPurposeAttribute($value)
     {
-        if ($value == true || $value === 'on') {
-            $this->attributes['sale'] = 1;
-            $this->attributes['rent'] = 0;
-        }
-    }
-
-    public function setRentAttribute($value)
-    {
-        if ($value == true || $value === 'on') {
-            $this->attributes['rent'] = 1;
-            $this->attributes['sale'] = 0;
+        if ($value == 'sale') {
+            $this->attributes['purpose'] = 'sale';
+        }else{
+            $this->attributes['purpose'] = 'rent';
         }
     }
 
@@ -187,7 +179,7 @@ class Contract extends Model
     public function terms()
     {
         // Finalidade [Venda/Locação]
-        if ($this->sale == true) {
+        if ($this->purpose == 'sale') {
             $parameters = [
                 'purpouse' => 'VENDA',
                 'part' => 'VENDEDOR',
@@ -195,7 +187,7 @@ class Contract extends Model
             ];
         }
 
-        if ($this->rent == true) {
+        if ($this->purpose == 'rent') {
             $parameters = [
                 'purpouse' => 'LOCAÇÃO',
                 'part' => 'LOCADOR',

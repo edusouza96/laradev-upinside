@@ -56,11 +56,11 @@
                             <div class="label_gc">
                                 <span class="legend">Finalidade:</span>
                                 <label class="label">
-                                    <input type="checkbox" name="sale" {{ (old('sale') == 'on' ? 'checked' : '') }}><span>Venda</span>
+                                    <input type="radio" name="purpose" value="sale" {{ (old('purpose') == 'sale' ? 'checked' : '') }}><span>Venda</span>
                                 </label>
 
                                 <label class="label">
-                                    <input type="checkbox" name="rent" {{ (old('rent') == 'on' ? 'checked' : '') }}><span>Locação</span>
+                                    <input type="radio" name="purpose" value="rent" {{ (old('purpose') == 'rent' ? 'checked' : '') }}><span>Locação</span>
                                 </label>
                             </div>
 
@@ -255,7 +255,7 @@
 
 @section('js')
     <script>
-        
+
 
         $(function(){
             $.ajaxSetup({
@@ -272,7 +272,7 @@
                         value: 0,
                         text: 'Não informar'
                     }));
-                    
+
                     $('select[name="owner_spouse"]').append($('<option>', {
                         value: 1,
                         text: response.spouse.spouse_name + '(' + response.spouse.spouse_document + ')',
@@ -293,7 +293,7 @@
                         value: 0,
                         text: 'Não informar'
                     }));
-                    
+
                     $.each(response.companies, function(key, value){
                         $('select[name="owner_company"]').append($('<option>', {
                             value: value.id,
@@ -316,7 +316,7 @@
                         value: 0,
                         text: 'Não informar'
                     }));
-                    
+
                     $.each(response.properties, function(key, value){
                         $('select[name="property"]').append($('<option>', {
                             value: value.id,
@@ -341,7 +341,7 @@
                         value: 0,
                         text: 'Não informar'
                     }));
-                    
+
                     $('select[name="acquirer_spouse"]').append($('<option>', {
                         value: 1,
                         text: response.spouse.spouse_name + '(' + response.spouse.spouse_document + ')',
@@ -362,7 +362,7 @@
                         value: 0,
                         text: 'Não informar'
                     }));
-                    
+
                     $.each(response.companies, function(key, value){
                         $('select[name="acquirer_company"]').append($('<option>', {
                             value: value.id,
@@ -425,7 +425,7 @@
                     setFieldAcquirer(response);
                 }, 'json');
             }
-            
+
             // property
             $('select[name="property"]').change(function(){
                 var property = $(this);
