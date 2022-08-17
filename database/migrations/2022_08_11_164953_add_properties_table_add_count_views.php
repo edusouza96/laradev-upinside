@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterPropertiesTableAddTitleAddSlugHeadlineExperience extends Migration
+class AddPropertiesTableAddCountViews extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AlterPropertiesTableAddTitleAddSlugHeadlineExperience extends Migration
     public function up()
     {
         Schema::table('properties', function (Blueprint $table) {
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->string('headline')->nullable();
-            $table->string('experience')->nullable();
+            $table->bigInteger('views')->default(0);
         });
     }
 
@@ -29,10 +26,7 @@ class AlterPropertiesTableAddTitleAddSlugHeadlineExperience extends Migration
     public function down()
     {
         Schema::table('properties', function (Blueprint $table) {
-            $table->dropColumn('title');
-            $table->dropColumn('slug');
-            $table->dropColumn('headline');
-            $table->dropColumn('experience');
+            $table->dropColumn('views');
         });
     }
 }

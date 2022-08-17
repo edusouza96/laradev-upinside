@@ -31,7 +31,7 @@ class AlterUsersTable extends Migration
             $table->string('occupation')->nullable();
             $table->double('income', 10, 2)->nullable();
             $table->string('company_work')->nullable();
-            
+
             /** Address */
             $table->string('zipcode')->nullable();
             $table->string('street')->nullable();
@@ -49,7 +49,7 @@ class AlterUsersTable extends Migration
             $table->string('type_of_communion')->nullable();
             $table->string('spouse_name')->nullable();
             $table->string('spouse_genre')->nullable();
-            $table->string('spouse_document')->unique()->nullable();
+            $table->string('spouse_document')->nullable();
             $table->string('spouse_document_secondary', 20)->nullable();
             $table->string('spouse_document_secondary_complement')->nullable();
             $table->date('spouse_date_of_birth')->nullable();
@@ -77,7 +77,7 @@ class AlterUsersTable extends Migration
              /** Perfil */
              $table->dropColumn('lessor');
              $table->dropColumn('lessee');
- 
+
              /** Data */
              $table->dropColumn('genre');
              $table->dropColumn('document');
@@ -86,12 +86,12 @@ class AlterUsersTable extends Migration
              $table->dropColumn('date_of_birth');
              $table->dropColumn('place_of_birth');
              $table->dropColumn('civil_status');
- 
+
              /** Income */
              $table->dropColumn('occupation');
              $table->dropColumn('income');
              $table->dropColumn('company_work');
-             
+
              /** Address */
              $table->dropColumn('zipcode');
              $table->dropColumn('street');
@@ -100,11 +100,11 @@ class AlterUsersTable extends Migration
              $table->dropColumn('neighborhood');
              $table->dropColumn('state');
              $table->dropColumn('city');
- 
+
              /** Contact */
              $table->dropColumn('telephone');
              $table->dropColumn('cell');
- 
+
              /** Spouse */
              $table->dropColumn('type_of_communion');
              $table->dropColumn('spouse_name');
@@ -114,12 +114,12 @@ class AlterUsersTable extends Migration
              $table->dropColumn('spouse_document_secondary_complement');
              $table->dropColumn('spouse_date_of_birth');
              $table->dropColumn('spouse_place_of_birth');
- 
+
              /** Income - Spouse */
              $table->dropColumn('spouse_occupation');
              $table->dropColumn('spouse_income');
              $table->dropColumn('spouse_company_work');
- 
+
              /** access */
              $table->dropColumn('admin');
              $table->dropColumn('client');

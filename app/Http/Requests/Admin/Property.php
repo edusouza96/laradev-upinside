@@ -48,7 +48,8 @@ class Property extends FormRequest
             'neighborhood' => 'required',
             'state' => 'required',
             'city' => 'required',
-            
+
+            'title' => 'required',
         ];
     }
 }

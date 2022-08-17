@@ -23,7 +23,7 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
-   
+
     public function team()
     {
         $users = User::where('admin', 1)->get();
@@ -104,13 +104,15 @@ class UserController extends Controller
 
         $user->setLessorAttribute($request->lessor);
         $user->setLesseeAttribute($request->lessee);
+        $user->setAdminAttribute($request->admin);
+        $user->setClientAttribute($request->client);
 
         if(!empty($request->file('cover'))){
             Storage::delete($user->cover);
             Cropper::flush($user->cover);
             $user->cover = '';
         }
-        
+
         $user->fill($request->all());
 
         if(!empty($request->file('cover'))){

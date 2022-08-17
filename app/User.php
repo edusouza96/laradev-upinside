@@ -86,6 +86,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Property::class, 'user', 'id');
     }
+    public function contractsAsAcquirer()
+    {
+        return $this->hasMany(Contract::class, 'acquirer', 'id');
+    }
 
     public function setLessorAttribute($value)
     {
@@ -103,6 +107,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function getDocumentAttribute($value)
     {
+        if(is_null($value)) return '';
         return substr($value, 0, 3).'.'.substr($value, 3, 3).'.'.substr($value, 6, 3).'-'.substr($value, 9, 2);
     }
 
@@ -127,6 +132,10 @@ class User extends Authenticatable implements JWTSubject
     public function setZipcodeAttribute($value)
     {
         $this->attributes['zipcode'] = floatVal($this->clearField($value));
+    }
+    public function getZipcodeAttribute($value)
+    {
+        return substr($value, 0, 5) . '-' . substr($value, 5, 3);
     }
 
     public function setTelephoneAttribute($value)
@@ -188,6 +197,39 @@ class User extends Authenticatable implements JWTSubject
     public function setClientAttribute($value)
     {
         $this->attributes['client'] = ($value === true || $value === 'on' ? 1 : 0);
+    }
+
+    public function getCivilStatusTranslateAttribute(string $status, string $genre)
+    {
+        if($genre === 'female'){
+            if($status === 'married'){
+                return 'casada';
+            }else if($status === 'separated'){
+                return 'separada';
+            }else if($status === 'single'){
+                return 'solteira';
+            }else if($status === 'divorced'){
+                return 'divorciada';
+            }else if($status === 'widower'){
+                return 'viúva';
+            }else {
+                return '';
+            }
+        }else{
+            if($status === 'married'){
+                return 'casado';
+            }else if($status === 'separated'){
+                return 'separado';
+            }else if($status === 'single'){
+                return 'solteiro';
+            }else if($status === 'divorced'){
+                return 'divorciado';
+            }else if($status === 'widower'){
+                return 'viúvo';
+            }else {
+                return '';
+            }
+        }
     }
 
     public function getUrlCoverAttribute()

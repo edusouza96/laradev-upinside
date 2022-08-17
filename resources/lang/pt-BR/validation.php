@@ -193,6 +193,7 @@ return [
         'income' => 'renda',
         'company_work' => 'empresa',
         'civil_status' => 'estado civil',
+        'cover' => 'foto',
 
         // Address
         'zipcode' => 'CEP',
@@ -227,7 +228,7 @@ return [
         'acquirer' => 'adquirente',
         'property' => 'imóvel',
         'start_at' => 'data de inicio',
-        
+
         //Property
         'user' => 'usuário',
         'tribute' => 'IPTU',

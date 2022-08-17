@@ -18,13 +18,13 @@ class AuthController extends Controller
         }
         return view('admin.index');
     }
-    
+
     public function home()
     {
         $lessors = User::lessors()->count();
         $lessees = User::lessees()->count();
         $team = User::where('admin', 1)->count();
-        
+
         $propertiesAvailable = Property::available()->count();
         $propertiesUnavailable = Property::unavailable()->count();
         $propertiesTotal = Property::all()->count();
@@ -33,33 +33,33 @@ class AuthController extends Controller
         $contractsActive = Contract::active()->count();
         $contractsCanceled = Contract::canceled()->count();
         $contractsTotal = Contract::all()->count();
-        
+
         $contracts = Contract::orderBy('id', 'desc')->limit(10)->get();
         $properties = Property::orderBy('id', 'desc')->limit(3)->get();
-        
+
         return view('admin.dashboard', [
-            'lessors' => $lessors, 
-            'lessees' => $lessees, 
-            'team' => $team, 
-            'propertiesAvailable' => $propertiesAvailable, 
-            'propertiesUnavailable' => $propertiesUnavailable, 
-            'propertiesTotal' => $propertiesTotal, 
+            'lessors' => $lessors,
+            'lessees' => $lessees,
+            'team' => $team,
+            'propertiesAvailable' => $propertiesAvailable,
+            'propertiesUnavailable' => $propertiesUnavailable,
+            'propertiesTotal' => $propertiesTotal,
             'contractsPendent' => $contractsPendent,
             'contractsActive' => $contractsActive,
             'contractsCanceled' => $contractsCanceled,
-            'contractsTotal' => $contractsTotal,    
+            'contractsTotal' => $contractsTotal,
             'contracts' => $contracts,
             'properties' => $properties,
         ]);
     }
-    
+
     public function login(Request $request)
     {
         if(in_array('', $request->only('email', 'password'))){
             $json['message'] = $this->message->error('Ooops, informe todos os dados para efeturar o login')->render();
             return response()->json($json);
         }
-        
+
         if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
             $json['message'] = $this->message->error('Ooops, informe um email válido')->render();
             return response()->json($json);
@@ -75,6 +75,12 @@ class AuthController extends Controller
             return response()->json($json);
         }
 
+        if(!$this->isAdmin()){
+            Auth::logout();
+            $json['message'] = $this->message->error('Ooops, usuário não tem permissão para acessar o painel de controle')->render();
+            return response()->json($json);
+        }
+
         $this->authenticate($request->ip());
         $json['redirect'] = route('admin.home');
         return response()->json($json);
@@ -85,7 +91,7 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('admin.login');
     }
-    
+
     private function authenticate(string $ip)
     {
         $user = User::where('id', Auth::user()->id);
@@ -94,5 +100,16 @@ class AuthController extends Controller
             'last_login_ip' => $ip
 
         ]);
+    }
+
+    private function isAdmin()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if($user->admin == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

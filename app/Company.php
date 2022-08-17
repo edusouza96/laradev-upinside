@@ -30,7 +30,7 @@ class Company extends Model
     {
         $this->attributes['document_company'] = $this->clearField($value);
     }
-    
+
     public function getDocumentCompanyAttribute($value)
     {
         return substr($value, 0, 2).'.'.
@@ -47,5 +47,14 @@ class Company extends Model
         }
 
         return str_replace(['.', '-', '/', '(', ')', ' '], '', $param);
+    }
+
+    public function getZipcodeAttribute($value)
+    {
+        return substr($value, 0, 5) . '-' . substr($value, 5, 3);
+    }
+    public function setZipcodeAttribute($value)
+    {
+        $this->attributes['zipcode'] = floatVal($this->clearField($value));
     }
 }

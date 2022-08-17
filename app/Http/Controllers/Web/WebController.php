@@ -98,6 +98,10 @@ class WebController extends Controller
     {
         $property = Property::where('slug', $request->slug)->first();
 
+        $property->increment('views');
+        // $property->views = $property->views + 1;
+        $property->save();
+
         $head = $this->seo->render(
             env('APP_NAME'),
             $property->headline ?? $property->title,
@@ -132,6 +136,10 @@ class WebController extends Controller
     public function buyProperty(Request $request)
     {
         $property = Property::where('slug', $request->slug)->first();
+
+        $property->increment('views');
+        // $property->views = $property->views + 1;
+        $property->save();
 
         $head = $this->seo->render(
             env('APP_NAME'),

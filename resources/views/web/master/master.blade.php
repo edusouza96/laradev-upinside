@@ -49,7 +49,7 @@
         <div class="container">
 
             <div class="navbar-brand">
-                <a href="index.php">
+                <a href="{{ route('web.home') }}">
                     <h1 class="text-hide">Imobiliária</h1>
                     <img src="{{ url(asset('frontend/assets/images/logo.png'))}}" width="280" alt="Imobiliária" class="d-inline-block">
                 </a>

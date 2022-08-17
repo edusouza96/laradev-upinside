@@ -17,3 +17,9 @@ COLOCANDO UM PROJETO LARAVEL NUMA HOSPEDAGEM
 - Caso queira ver o conteudo .env(tail .env)
 - Rodar as migrações (php artisan migrate)
 
+************************************************************************************************************************
+COMANDOS PARA INSTALAR AS DEPENDENCIAS
+composer install
+npm install
+npm run dev
+php artisan storage:link

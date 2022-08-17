@@ -30,8 +30,8 @@
 
 <div class="ajax_response"></div>
 @php
-    if(\Illuminate\Support\Facades\File::exists(storage_path() . '/app/public/' . \Illuminate\Support\Facades\Auth::user()->cover)){
-        $cover = \Illuminate\Support\Facades\Auth::user()->url_cover;
+    if(!empty( auth()->user()->cover) && \Illuminate\Support\Facades\File::exists(storage_path() . '/app/public/' . auth()->user()->cover)){
+        $cover = auth()->user()->url_cover;
     }else{
         $cover = url(asset('backend/assets/images/avatar.jpg'));
     }
@@ -43,7 +43,7 @@
             <img class="dash_sidebar_user_thumb" src="{{ $cover }}" alt="" title=""/>
 
             <h1 class="dash_sidebar_user_name">
-                <a href="">Gustavo Web</a>
+                <a href="{{ route('admin.users.edit', ['user' => auth()->user()->id]) }}">{{ auth()->user()->name }}</a>
             </h1>
         </article>
 

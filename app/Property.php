@@ -273,4 +273,21 @@ class Property extends Model
         }
     }
 
+    public function getZipcodeAttribute($value)
+    {
+        return substr($value, 0, 5) . '-' . substr($value, 5, 3);
+    }
+    public function setZipcodeAttribute($value)
+    {
+        $this->attributes['zipcode'] = floatVal($this->clearField($value));
+    }
+
+    private function clearField(?string $param)
+    {
+        if(empty($param)){
+            return '';
+        }
+
+        return str_replace(['.', '-', '/', '(', ')', ' '], '', $param);
+    }
 }
