@@ -15,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Schema::defaultStringLength(191);
 
-        Blade::component('admin.components.message', 'message');
     }
 
     /**
@@ -27,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+
+        Blade::component('admin.components.message', 'message');
     }
 }
