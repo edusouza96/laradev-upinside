@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Blade::component('admin.components.message', 'message');
+        Blade::aliasComponent('admin.components.message', 'message');
     }
 }
